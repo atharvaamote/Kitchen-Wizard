@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="libs/fontawesome-free-6.0.0-web/css/all.css">
+    <link rel="stylesheet" href="libs/bulma/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Kitchen Wizard </title>
+    <script src="./src/fetchRecipes.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        
+        <header id="header" class="header-container">
+            <h1>Kitchen Wizard</h1>
+        </header>
+
+        <section id="main-container">
+            <div class="inside-container">
+                <section id="recipe-container" class="visible">
+                   
+                    <div class="ingredients-table-panel">
+                        <section class="ingredients-container">
+                            <ul id="recipe-ingredients" class="recipe-ingredients">
+                                <h3>Ingredients: <span id="recipe-ingredients-number"></span></h3>
+                                <p>Preparation time: <span id="prepar-time"></span>min</p>
+                                <p>Servings: <span id="servings-number"></span></p>
+                                <li class="ingredient"></li>
+                            </ul>
+                            <div class="instructions">
+                                <h3>Preparation</h3>
+                                <span>
+                                    <button id="recipe-btn-instructions" class="button is-light">
+                                        <a id="linkFood" href="#" target="_blank">Instructions</a>
+                                    </button></a>
+                                    <a href="#" id="foodSource" target="_blank"></a>
+                                </span>
+                            </div>
+                        </section>
+
+                <!-- nutrition table-->
+
+                <table class="table is-hoverable">
+                    <thead>
+                        <th>Quantity per serving</th>
+                        <th></th>
+                        <th>%</th>
+                    </thead>
+                    <tr>
+                        <th>Energetic value</th>
+                        <td><span id="food-calories-data"></span>kcal</td>
+                        <td><span id="food-calories-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Carbs</th>
+                        <td><span id="food-carbs-data"></span>g</td>
+                        <td><span id="food-carbs-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Proteins</th>
+                        <td><span id="food-proteins-data"></span>g</td>
+                        <td><span id="food-proteins-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Saturated fat</th>
+                        <td><span id="food-saturatedfat-data"></span>g</td>
+                        <td><span id="food-saturatedfat-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Trans fat</th>
+                        <td><span id="food-transfat-data"></span>g</td>
+                        <td><span id="food-transfat-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Total fat</th>
+                        <td><span id="food-totalfat-data"></span>g</td>
+                        <td><span id="food-totalfat-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Fiber</th>
+                        <td><span id="food-totalfiber-data"></span>g</td>
+                        <td><span id="food-totalfiber-percent"></span>%</td>
+                    </tr>
+                    <tr>
+                        <th>Sodium</th>
+                        <td><span id="food-sodium-data"></span>mg</td>
+                        <td><span id="food-sodium-percent"></span>%</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- chatbot ( BAKI HAI )-->
+
+    
+
+        <!--buttons-->
+
+        
+        <nav id="navbar" class="nav">
+            <div>
+                <span class="icon selected" id="food-icon" title="Food recipe">
+                    <i class="fa-solid fa-utensils"></i>
+                </span>
+                
+                <span class="icon" id="refresh-icon" title="Generate recipes again">
+                    <i class="fa-solid fa-rotate"></i>
+                </span>
+                <span class="icon" id="setttings-icon" title="Reset preferences">
+                    <i class="fa-solid fa-gear"></i>
+                </span>
+            </div>
+        </nav>
+    </main>
+
+    <section id="loading">
+        <div>
+            <figure class="image">
+                <img src="imgs/">
+            </figure>
+
+        </div>
+    </section>
+
+
+    <section id="forms">
+        <div class="forms-inside-container">
+
+            <section id="preferences-form" action="">
+                <div id="question-1" class="questions">
+                    <p class="speech-bubble hidden">Hello, I am Atharva's chota bhai , and I will ask some questions about your food preferences before we get started</p>
+                    <p class="speech-bubble hidden">What's your name?</p>
+                    <div class="input-group hidden">
+                        <input class="input" type="text" name="username" placeholder="Enter your name" id="username">
+                        <div class="form-button-container">
+                            <button class="button is-outlined is-danger btn-start-over">Start over</button>
+                            <button id="btn-username" class="button next is-success">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="question-2" class="questions">
+                    <p class="speech-bubble hidden">Do you have any food restrictions?</p>
+                    <div class="input-group hidden">
+                        <label class="label" for="restricted-4"><input class="checkbox" type="checkbox" name="restricted-foods" id="restricted-4" value="alcohol-free">alcohol-free</label>
+                        <label class="label" for="restricted-7"><input class="checkbox" type="checkbox" name="restricted-foods" id="restricted-7" value="low-sugar">low-sugar</label>
+                        <div class="form-button-container">
+                            <button class="button is-outlined is-danger btn-start-over">Start againr</button>
+                            <button id="btn-restriction" class="button next is-success">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="question-3" class="questions">
+                    <p class="speech-bubble hidden">What are the ingredients you want to use<span id="username-span"></span>?</p>
+                    <div class="input-group hidden">
+                        <input class="input" type="text" name="ingredients" placeholder="Enter the ingredients" id="ingredients">
+                        <div class="form-button-container">
+                            <button class="button is-outlined is-danger btn-start-over">Start over</button>
+                            <button id="btn-ingredients" class="button next is-success">Next</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="question-5" class="questions">
+                    <p class="speech-bubble hidden">Generating random recipe suggestions...</p>
+                </div>
+            </section>
+
+</body>
+</html>
